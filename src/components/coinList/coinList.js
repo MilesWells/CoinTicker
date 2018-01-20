@@ -2,30 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Grid, IconButton, Paper, TextField } from 'material-ui';
 import AddIcon from 'material-ui-icons/Add';
+import { fetchCoinListAsyncDispatcher } from './coinList.reducer';
+import { Link } from 'react-router-dom';
 
 class CoinList extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state = {
-            tickers: [],
-            filteredTickers: [],
+            filteredTickers: props.coinList ? props.coinList.tickers : [],
             tickerFilter: ''
         };
     }
 
-    async componentDidMount() {
-        await this.getTickerData();
+    componentWillReceiveProps(newProps) {
+        this.setState({
+            filteredTickers: newProps.coinList.tickers
+        });
     }
-
-    getTickerData = async () => {
-        const result = await fetch('https://api.coinmarketcap.com/v1/ticker/?limit=250');
-        const json = await result.json();
-        this.setState({ tickers: json, filteredTickers: json });
-    };
 
     handleChange = event => {
         let filter = event.target.value.toLowerCase();
-        const filteredTickers = this.state.tickers.filter(ticker => ticker.name.toLowerCase().indexOf(filter) > -1 || ticker.symbol.toLowerCase().indexOf(filter) > -1);
+        const filteredTickers = this.props.coinList.tickers.filter(ticker => ticker.name.toLowerCase().indexOf(filter) > -1 || ticker.symbol.toLowerCase().indexOf(filter) > -1);
         this.setState({ filteredTickers });
     };
 
@@ -43,7 +40,7 @@ class CoinList extends React.Component {
                         <Grid key={ticker.id} item xs={6} sm={2}>
                             <Paper>
                                 <h3>
-                                    <a href={`https://coinmarketcap.com/currencies/${ticker.id}`} target="_blank">{ticker.name} - {ticker.symbol}</a>
+                                    <Link to={`coins/${ticker.symbol}`}>{ticker.name} - {ticker.symbol}</Link>
                                 </h3>
 
                                 <div>${parseFloat(ticker.price_usd).toFixed(6).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}</div>
@@ -62,9 +59,9 @@ class CoinList extends React.Component {
 
 export default connect(
     (state) => ({
-
+        coinList: state.coinList
     }),
     {
-
+        fetchCoinListAsyncDispatcher
     }
 )(CoinList);
