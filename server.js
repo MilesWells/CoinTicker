@@ -8,7 +8,7 @@ const http = require('http');
 /**
  * Import API Routes
  */
-const myRoute = require('./api/routes/myRoute');
+const estimation = require('./api/routes/topTenEstimation');
 
 let app = express();
 
@@ -22,7 +22,7 @@ app.use(cors());
 /**
  * Use API Routes
  */
-app.use('/api/myRoute', myRoute);
+app.use('/api/estimation', estimation);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

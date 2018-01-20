@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MyComponent from 'myComponent';
+import CoinList from 'coinList';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<MyComponent />, div);
+  ReactDOM.render(<CoinList />, div);
 });

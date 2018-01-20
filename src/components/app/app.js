@@ -1,8 +1,8 @@
 import React from 'react';
 import './app.css';
-import MyConnectedComponent from '../myConnectedComponent/myConnectedComponent';
+import CoinList from '../coinList/coinList';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory'
+import createBrowserHistory from 'history/createBrowserHistory';
 
 const history = createBrowserHistory();
 
@@ -12,7 +12,7 @@ class App extends React.Component {
             <div className="App">
                 <Router history={history}>
                     <Switch>
-                        <Route exact path="/" component={MyConnectedComponent}/>
+                        <Route exact path="/" component={CoinList}/>
                         <Redirect to="/"/>
                     </Switch>
                 </Router>
