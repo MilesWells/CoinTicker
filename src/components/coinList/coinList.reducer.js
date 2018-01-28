@@ -8,9 +8,9 @@ export const FETCH_COIN_LIST = 'FETCH_COIN_LIST';
 
 export const fetchCoinListActionCreator = (data) => ({ type: FETCH_COIN_LIST, payload: data });
 
-export const fetchCoinListAsyncDispatcher = () => {
+export const fetchCoinListAsyncDispatcher = (limit = 250) => {
     return async (dispatch) => {
-        let data = await getCoinList();
+        let data = await getCoinList(limit);
         dispatch(fetchCoinListActionCreator(data));
     }
 };

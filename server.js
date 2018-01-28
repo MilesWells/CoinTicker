@@ -2,13 +2,13 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const debug = require('debug')('myapp:server');
+const debug = require('debug')('cointicker:server');
 const http = require('http');
 
 /**
  * Import API Routes
  */
-const estimation = require('./api/routes/topTenEstimation');
+const estimation = require('./api/routes/marketCapEquivalence');
 
 let app = express();
 
@@ -22,7 +22,7 @@ app.use(cors());
 /**
  * Use API Routes
  */
-app.use('/api/estimation', estimation);
+app.use('/api/marketcap/equivalence', estimation);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

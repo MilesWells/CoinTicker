@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import '../node_modules/react-materialize/'
 import App from './components/app/app';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';

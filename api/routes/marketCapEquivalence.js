@@ -18,8 +18,8 @@ const evaluate = async (numCoins, coinId) => {
         return {
             coin: topCoin.name,
             symbol: topCoin.symbol,
-            evaluation,
-            market_cap_evaluation: (evaluation * coin.available_supply).toFixed(2)
+            marketCap: topCoin.market_cap_usd,
+            evaluation
         };
     })
 };
@@ -38,7 +38,7 @@ router.get('/topten/:id', async (req, res) => {
     }
 });
 
-router.get('/topcustom', async (req, res) => {
+router.get('/custom', async (req, res) => {
     try {
         const numCoins = req.query.numCoins;
         const coinId = req.query.coinName;
