@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCoinListAsyncDispatcher } from './coinList.reducer';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import PriceLabel from '../priceLabel/priceLabel';
 import { Grid, Paper, TextField } from 'material-ui';
 
@@ -56,11 +56,11 @@ class CoinList extends React.Component {
     }
 }
 
-export default connect(
+export default withRouter(connect(
     (state) => ({
         coinList: state.coinList
     }),
     {
         fetchCoinListAsyncDispatcher
     }
-)(CoinList);
+)(CoinList));
