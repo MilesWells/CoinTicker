@@ -50,7 +50,7 @@ class CoinDetails extends React.Component {
                                         <ListItemText primary="Rank" secondary={coinDetails.rank}/>
                                     </ListItem>
                                     <ListItem>
-                                        <ListItemText primary="Price (USD)" secondary={coinDetails.price_usd}/>
+                                        <ListItemText primary="Price (USD)" secondary={'$' + coinDetails.price_usd}/>
                                     </ListItem>
                                     <ListItem>
                                         <ListItemText primary="Price (BTC)" secondary={coinDetails.price_btc}/>
